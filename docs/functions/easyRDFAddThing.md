@@ -102,10 +102,10 @@ $thingUri = easyRDFAddThing(
 ```mermaid
 flowchart TD
   subgraph Inputs
-    I1[group="painting"]
-    I2[label="Portrait of a Lady"]
+    I1["group='painting'"]
+    I2["label='Portrait of a Lady'"]
     I3[classes: E22]
-    I4[types: "Oil paint"]
+    I4["types: 'Oil paint'"]
     I5[UUID from nslabel+nsgroup]
   end
 
