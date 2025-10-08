@@ -4,13 +4,21 @@
 > 
 > **When to use:** <situations where this is the right helper>.
 
+> Common inputs: `g` (Graph), `uri` (UriFactory), `u` (UUIDManager) — see [Common parameters](common-parameters.md).  
+> **Parameter order:** `g, uri, u, …, aatIndex, …` (edit as needed for this function).
+
 ---
 
 ## Parameters
 
-| Name | Type | Required | Meaning | Notes |
+> Tip: wrap types in backticks. For optional types, use a **word‑joiner** to prevent wrapping, e.g. `` `?&#8288;string` ``.
+
+| Name | Type | Req | Meaning | Notes |
 |---|---|:--:|---|---|
-|  |  |  |  |  |
+| g, uri, u |  | ✓ | Common first 3 parameters | See [Common parameters](common-parameters.md). |
+| <paramName> | `string` | ✓ | <meaning> | <notes> |
+| <optionalParam> | `?&#8288;string` |  | <meaning> | <notes> |
+| aatIndex | `?array` |  | Common lookup (AAT index) | See [Common parameters](common-parameters.md). **Position:** nᵗʰ argument. |
 
 ## Returns
 - <describe the return type and meaning>
