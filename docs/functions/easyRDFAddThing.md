@@ -1,28 +1,9 @@
 # Function: easyRDFAddThing
 
-> **Purpose:** Create a new CIDOC CRM entity with a human-readable label and (by default) an **E41 Appellation** carrying the label as `crm:P190_has_symbolic_content`.  
+> **Purpose:** Create a new CIDOC CRM entity with a human-readable label and (by default) an **E41 Appellation** carrying the label as `crm:P190_has_symbolic_content`.
 > **When to use:** Whenever you need a stable, mintable URI and primary appellation for a resource (e.g., painting, sample, person, type).
 
 ---
-
-## Signature
-
-```php
-function easyRDFAddThing(
-  Graph $g,
-  UriFactory $uri,
-  UUIDManager $u,
-  string $group,
-  array $classes,
-  array $types,    
-  string $label,    
-  ?string $nslabel = null,    
-  ?string $nsgroup = null,
-  ?array $aatIndex = [],
-  ?string $isSymbolicObject = null,
-  ?string $isPartOfUri = null
-): string
-```
 
 ## Parameters
 
@@ -42,7 +23,10 @@ function easyRDFAddThing(
 | isPartOfUri | ?string |  | Override parent URI | Final URI: `{isPartOfUri}/{group}` |
 
 ## Returns
-- **string** — the minted entity URI.
+- **string** — the minted entity URI in the form:
+```
+https://data.example.org/resource/GROUP/c17e0f01-01da-4eb4-9a35-0bbf314b1848
+```
 
 ---
 
@@ -142,6 +126,62 @@ flowchart TD
 - Conventions: [/docs/conventions.md](../conventions.md)
 
 ---
+<details>
+<summary><h2>PHP Code</h2></summary>
+  
+```php
+
+// Version 1.0
+function easyRDFAddThing (
+  Graph $g,
+  UriFactory $uri,
+  UUIDManager $u,
+  string $group,
+  array $classes,
+  array $types,    
+  string $label,    
+  ?string $nslabel = null,    
+  ?string $nsgroup = null,
+  ?array $aatIndex = [],
+  ?string $isSymbolicObject = null,
+  ?string $isPartOfUri = null
+): string {
+  
+  if (!$nslabel) {$nslabel = $label;}
+  if (!$nsgroup) {$nsgroup = $group;}
+  
+  if ($isPartOfUri)
+    {$thingUri = $isPartOfUri."/".$group;}
+  else
+    {$thingUri = $uri->mint($group, $u->get($nslabel, $nsgroup));}
+    
+  $g->addLiteral ($thingUri, 'rdfs:label', trim($label));
+  
+  if ($isSymbolicObject)
+    {
+    $g->addLiteral ($thingUri, 'crm:P190_has_symbolic_content', trim($label)); 
+    }
+  else
+    {
+    $thingAppUri = $thingUri."/primary_appellation";
+
+    $g->addResource ($thingAppUri, 'rdf:type', 'crm:E41_Appellation'); 
+    $g->addResource ($thingAppUri, 'crm:P2_has_type', 'http://www.researchspace.org/resource/system/vocab/resource_type/primary_appellation');
+    $g->addLiteral ($thingAppUri, 'crm:P190_has_symbolic_content', trim($label)); 
+    $g->addResource ($thingUri, 'crm:P1_is_identified_by', $thingAppUri);
+    }
+  
+  foreach ($classes as $k => $c)
+    {$g->addResource($thingUri, 'rdf:type', $c);}    
+  
+  if ($types)
+    {easyRDFAddTypes($g, $uri, $u, $types, $thingUri, $aatIndex);}
+  
+  return $thingUri;
+  }
+```
+
+</details>
 
 ## Changelog
 
