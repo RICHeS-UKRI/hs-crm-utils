@@ -17,7 +17,7 @@ Common inputs: g (Graph), uri (UriFactory), u (UUIDManager) — [Common paramete
 | classes | array | ✓ | CRM classes to assert | e.g., `['crm:E22_Human-Made_Object']` |
 | types | array |  | Types to attach to the thing | **Shape:** `label => [tags]`, passed to `easyRDFAddTypes` |
 | label | string | ✓ | Human-readable text | Also used to seed UUID if `nslabel` null |
-| nslabel | ?string |  | UUID name | Defaults to `label` |
+| nslabel | ?&#8288;string |  | UUID name | Defaults to `label` |
 | nsgroup | ?string |  | UUID namespace | Defaults to `group` |
 | aatIndex | ?array |  | Common lookup | see [Common parameters](common-parameters.md). |
 | isSymbolicObject | ?string |  | If truthy, write P190 on the thing and **skip E41** | Use sparingly |
