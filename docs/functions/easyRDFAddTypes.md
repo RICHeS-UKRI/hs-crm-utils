@@ -14,7 +14,7 @@ Common inputs: g (Graph), uri (UriFactory), u (UUIDManager) — [Common paramete
 |---|---|:--:|---|---|
 | g, uri, u |  | ✓ | Common first 3 parameters | see [Common parameters](common-parameters.md) |
 | typeArray | array | ✓ | Map of type labels to membership tags | **Shape:** `label => [tags]` e.g., `['Oil paint' => ['materials']]` |
-| parentUri | ?string |  | Resource to link from | If present, asserts `parentUri --typePred--> typeUri` |
+| parentUri | ?&#8288;string |  | Resource to link from | If present, asserts `parentUri --typePred--> typeUri` |
 | aatIndex | array |  | AAT lookup (normalised keys) | see [Common parameters](common-parameters.md). **Position:** 6th argument |
 | typePred | ?string |  | Predicate used to link types | Default: `crm:P2_has_type` |
 | typeClass | ?string |  | Class for type nodes | Default: `crm:E55_Type` |
