@@ -1,15 +1,10 @@
 # Function: <functionName>
 
-> **Purpose (one-liner):** <what this function does in plain English>.  
+> **Purpose (one-liner):** <what this function does in plain English>.
+> 
 > **When to use:** <situations where this is the right helper>.
 
 ---
-
-## Signature
-
-```php
-function <functionName>(<typed parameters>): <return type>
-```
 
 ## Parameters
 
@@ -55,15 +50,13 @@ function <functionName>(<typed parameters>): <return type>
 
 ```mermaid
 flowchart TD
-  A[Input<br/><small>parameters + lookups</small>] --> B[URI minting / selection]
+  A["Input<br/><small>parameters + lookups</small>"] --> B["URI minting / selection"]
   B --> C["Entity node<br/><small>rdf:type class(es)</small>"]
-  C --> D[Appellation E41<br/><small>P1_is_identified_by</small>]
-  D --> E[P190_has_symbolic_content = label]
+  C --> D["Appellation E41<br/><small>P1_is_identified_by</small>"]
+  D --> E["P190_has_symbolic_content = label"]
   C --> F["Types (E55)<br/><small>P2_has_type</small>"]
-  F --> G[[AAT or local list]]
+  F --> G[["AAT or local list"]]
 ```
-
-> Replace nodes with the exact resources/relations your function asserts.
 
 ---
 
@@ -78,6 +71,17 @@ flowchart TD
 
 - See also: <links to other function docs>
 - Conventions: [/docs/conventions.md](../conventions.md)
+
+---
+
+<details>
+<summary><h2>PHP Code</h2></summary>
+
+```php
+function FUNCTIONNAME
+// actual full php code of the function
+```
+</details>
 
 ---
 
