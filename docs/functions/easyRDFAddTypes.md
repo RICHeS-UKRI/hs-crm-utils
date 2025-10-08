@@ -8,16 +8,16 @@
 
 ## Parameters
 
-| Name | Type | Required | Meaning | Notes |
+Common inputs: g (Graph), uri (UriFactory), u (UUIDManager) — [Common parameters](common-parameters.md)
+
+| Name | Type | Req | Meaning | Notes |
 |---|---|:--:|---|---|
-| `g` | `Graph` | ✓ | EasyRdf graph to mutate | Should have prefixes `crm`, `rdfs`, `skos`, and `aat` if using CURIEs. |
-| `uri` | `UriFactory` | ✓ | Mints URIs for local types | Used only when creating local E55 types. |
-| `u` | `UUIDManager` | ✓ | Deterministic UUIDs | Used by `easyRDFAddThing` for local type minting. |
-| `typeArray` | `array` | ✓ | Map of **label ⇒ list of membership tags** | e.g., `{ "Oil paint": ["materials"] }`. |
-| `parentUri` | `?string` |  | Resource to link from | If set, link `parentUri --typePred--> typeUri`. |
-| `aatIndex` | `array` |  | Normalised-key lookup for AAT | Keys are lowercased with spaces→underscores. |
-| `typePred` | `?string` |  | Predicate used to link types | Default: `crm:P2_has_type`. |
-| `typeClass` | `?string` |  | Class for type nodes | Default: `crm:E55_Type`. |
+| g, uri, u |  | ✓ | Common first 3 parameters | see [Common parameters](common-parameters.md) |
+| typeArray | array | ✓ | Map of type labels to membership tags | **Shape:** `label => [tags]` e.g., `['Oil paint' => ['materials']]` |
+| parentUri | ?string |  | Resource to link from | If present, asserts `parentUri --typePred--> typeUri` |
+| aatIndex | array |  | AAT lookup (normalised keys) | see [Common parameters](common-parameters.md). **Position:** 6th argument |
+| typePred | ?string |  | Predicate used to link types | Default: `crm:P2_has_type` |
+| typeClass | ?string |  | Class for type nodes | Default: `crm:E55_Type` |
 
 ## Returns
 - **`array`** — mapping **(final label)** ⇒ **type URI** used/created.
