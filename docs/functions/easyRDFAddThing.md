@@ -8,20 +8,21 @@
 
 ## Parameters
 
+Common inputs: g (Graph), uri (UriFactory), u (UUIDManager) — [Common parameters](common-parameters.md)
+
 | Name | Type | Req | Meaning | Notes |
 |---|---|:--:|---|---|
-| g | Graph | ✓ | EasyRdf graph to mutate | Must include prefixes `crm`, `rdfs` |
-| uri | UriFactory | ✓ | Mints base URIs | `mint($group, $uuid)` |
-| u | UUIDManager | ✓ | Deterministic UUIDs | `get(nslabel, nsgroup)` |
+| g, uri, u |  | ✓ | Common first 3 parameters | see [Common parameters](common-parameters.md) |
 | group | string | ✓ | Logical group / path segment | e.g., `painting`, `sample` |
 | classes | array | ✓ | CRM classes to assert | e.g., `['crm:E22_Human-Made_Object']` |
-| types | array |  | Types to attach to the thing | Passed to `easyRDFAddTypes` |
+| types | array |  | Types to attach to the thing | **Shape:** `label => [tags]`, passed to `easyRDFAddTypes` |
 | label | string | ✓ | Human-readable text | Also used to seed UUID if `nslabel` null |
 | nslabel | ?string |  | UUID name | Defaults to `label` |
 | nsgroup | ?string |  | UUID namespace | Defaults to `group` |
-| aatIndex | ?array |  | Lookup for types | For `easyRDFAddTypes` |
+| aatIndex | ?array |  | Common lookup | see [Common parameters](common-parameters.md). |
 | isSymbolicObject | ?string |  | If truthy, write P190 on the thing and **skip E41** | Use sparingly |
 | isPartOfUri | ?string |  | Override parent URI | Final URI: `{isPartOfUri}/{group}` |
+
 
 ## Returns
 - **string** — the minted entity URI in the form:
