@@ -1,6 +1,7 @@
 # Function: easyRDFAddThing
 
 > **Purpose:** Create a new CIDOC CRM entity with a human-readable label and (by default) an **E41 Appellation** carrying the label as `crm:P190_has_symbolic_content`.
+
 > **When to use:** Whenever you need a stable, mintable URI and primary appellation for a resource (e.g., painting, sample, person, type).
 
 ---
